@@ -1,7 +1,9 @@
 <?php
+//Server Login
 $servername = 'localhost';
 $username = 'root';
 $password= '';
+// Logs in to server checks if DB exists if not create tehn connect
 try {
  $conn = new PDO("mysql:host=$servername", $username, $password);
  $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -15,7 +17,7 @@ catch(PDOException $e) {
  echo $sql . "<br>" . $e->getMessage();
 }
 
-
+//Creates the Events Table
 $stmt = $conn->prepare("DROP TABLE IF EXISTS Tbl_Events;
 CREATE TABLE Tbl_Events
 (Event_ID INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
@@ -29,7 +31,7 @@ $stmt->execute();
 $stmt->closeCursor();
 
 
-
+//Creates the Users table
 $stmt = $conn->prepare("DROP TABLE IF EXISTS Tbl_Users;
 CREATE TABLE Tbl_Users 
 (User_ID INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
@@ -44,7 +46,7 @@ $stmt->execute();
 $stmt->closeCursor();
 
 
-
+//Creates the Usersinevents table
 $stmt = $conn->prepare("DROP TABLE IF EXISTS Tbl_Usersinevents;
 CREATE TABLE Tbl_Usersinevents
 (User_ID INT(6),
@@ -54,10 +56,13 @@ PRIMARY KEY(User_ID,Event_ID))");
 $stmt->execute();
 $stmt->closeCursor();
 
-
-$stmt = $conn->prepare("INSERT INTO `tbl_users` (`User_ID`, `User_Loginname`, `User_Password`, `User_Fullname`, `Email_Address`, `Email_Time`, `Email_Toggle`, `User_Role`) VALUES
- (NULL, 'Admin', 'Admin', 'Admin', 'Admin@example.com', '00:00:00', '0', '1');")
- echo("Admin User created")
+//Creates primary admin starter account
+$stmt = $conn->prepare("INSERT INTO tbl_users 
+(User_ID, User_Loginname,User_Password, User_Fullname, Email_Address, Email_Time, Email_Toggle, User_Role) VALUES
+(NULL, 'Admin', 'Admin', 'Admin', 'Admin@example.com', '00:00:00', '0', '1');");
+ $stmt->execute();
+ $stmt->closeCursor();
+ echo "  Admin User created";
 
 
 
