@@ -1,15 +1,12 @@
 <?php
-
 $servername = 'localhost';
 $username = 'root';
 $password= '';
-//note no Database mentioned here!
 try {
  $conn = new PDO("mysql:host=$servername", $username, $password);
  $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
  $sql = "CREATE DATABASE IF NOT EXISTS BusinessDiary";
  $conn->exec($sql);
- //next 3 lines optional only needed really if you want to go on an do more SQL here!
  $sql = "USE BusinessDiary";
  $conn->exec($sql);
  echo "DB created successfully";
@@ -56,4 +53,12 @@ Event_User_Desc text(256),
 PRIMARY KEY(User_ID,Event_ID))");
 $stmt->execute();
 $stmt->closeCursor();
+
+
+$stmt = $conn->prepare("INSERT INTO `tbl_users` (`User_ID`, `User_Loginname`, `User_Password`, `User_Fullname`, `Email_Address`, `Email_Time`, `Email_Toggle`, `User_Role`) VALUES
+ (NULL, 'Admin', 'Admin', 'Admin', 'Admin@example.com', '00:00:00', '0', '1');")
+ echo("Admin User created")
+
+
+
 ?>
