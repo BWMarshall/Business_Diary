@@ -1,9 +1,11 @@
 <?php
+// Install File for the initial Server on set up: Creates tables and Initial Admin account
+
 //Server Login
 $servername = 'localhost';
 $username = 'root';
 $password= '';
-// Logs in to server checks if DB exists if not create tehn connect
+// Logs in to server checks if DB exists if not create then connect
 try {
  $conn = new PDO("mysql:host=$servername", $username, $password);
  $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -11,7 +13,7 @@ try {
  $conn->exec($sql);
  $sql = "USE BusinessDiary";
  $conn->exec($sql);
- echo "DB created successfully";
+ echo "DB created successfully <br>";
 }
 catch(PDOException $e) {
  echo $sql . "<br>" . $e->getMessage();
@@ -56,14 +58,12 @@ PRIMARY KEY(User_ID,Event_ID))");
 $stmt->execute();
 $stmt->closeCursor();
 
-//Creates primary admin starter account
+//Creates primary admin starter account 
 $stmt = $conn->prepare("INSERT INTO tbl_users 
 (User_ID, User_Loginname,User_Password, User_Fullname, Email_Address, Email_Time, Email_Toggle, User_Role) VALUES
 (NULL, 'Admin', 'Admin', 'Admin', 'Admin@example.com', '00:00:00', '0', '1');");
  $stmt->execute();
  $stmt->closeCursor();
  echo "  Admin User created";
-
-
 
 ?>
