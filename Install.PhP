@@ -59,9 +59,11 @@ $stmt->execute();
 $stmt->closeCursor();
 
 //Creates primary admin starter account 
+$password = password_hash("Admin", PASSWORD_DEFAULT);
 $stmt = $conn->prepare("INSERT INTO tbl_users 
 (User_ID, User_Loginname,User_Password, User_Fullname, Email_Address, Email_Time, Email_Toggle, User_Role) VALUES
-(NULL, 'Admin', 'Admin', 'Admin', 'Admin@example.com', '00:00:00', '0', '1');");
+(NULL, 'Admin', :Password, 'Admin', 'Admin@example.com', '00:00:00', '0', '1');");
+ $stmt->bindParam(':Password', $password);
  $stmt->execute();
  $stmt->closeCursor();
  echo "  Admin User created";
