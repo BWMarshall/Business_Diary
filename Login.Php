@@ -1,3 +1,4 @@
+<!-- Login page - for recieving users inputs then posting through to login Process  -->
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,6 +8,7 @@
 <h1>Log In</h1> 
 
 <br>
+<!--Login Input and post -->
 <form action = "LoginProcess.php" method = "POST">
     <div class="input-group">
         <input  type="text" class="form-control" name="Username" placeholder="Username">
