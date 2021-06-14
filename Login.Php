@@ -5,7 +5,7 @@
    <title>Login</title>
 </head>
 <body>
-<h1>Log In</h1> 
+<h1>Log In</h1>
 
 <br>
 <!--Login Input and post -->
