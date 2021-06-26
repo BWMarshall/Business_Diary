@@ -22,7 +22,7 @@ $stmt = $conn->prepare("INSERT INTO tbl_users
  $stmt->bindParam(':EmailTime', $_POST["EmailTime"]);
  $stmt->bindParam(':EmailToggle', $_POST["EmailToggle"]);
  $stmt->bindParam(':Role', $_POST["Role"]);
- //Binds the Admin password for the SQL statement
  $stmt->execute();
  $stmt->closeCursor();
+ echo(" <br> User Created Successfully")
 ?>
