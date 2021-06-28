@@ -1,3 +1,4 @@
+<!-- Temporary Create USer inputs page to be implemented on Homepage -->
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,7 +8,7 @@
   
 </head>
 <body>
-    
+    <!-- Form to collect Create User data - Posts it through to Create User Process -->
     <form action="CreateUserProcess.php" method = "POST"> 
         <!-- Text Inputs -->
         <input type="text" name="Loginname" placeholder="Username"><br>
