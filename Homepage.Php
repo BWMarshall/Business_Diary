@@ -41,29 +41,64 @@
     $result = $conn->query($sqlA);
     if ($result->rowCount() > 0) {
         while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
-            $sqlB = "SELECT Event_Date FROM tbl_events WHERE Event_ID ='".$row["Event_ID"]."'"; // Gets all events current session user is participating in
+            $sqlB = "SELECT * FROM tbl_events WHERE Event_ID ='".$row["Event_ID"]."'"; // Gets all events current session user is participating in
             $query = $conn->query($sqlB);
-            $arr_date = $query->fetch(PDO::FETCH_ASSOC);
-            $Event_Date = ($arr_date["Event_Date"]);
+            $arr_result = $query->fetch(PDO::FETCH_ASSOC);
+            $Event_Date = ($arr_result["Event_Date"]);
             $Event_Timestamp = strtotime($Event_Date);
             echo($Event_Date)."<br>";
             if ($Event_Timestamp >= strtotime($week_start) and $Event_Date <= strtotime($week_finish)) { //Places Events in Current week into arr_events
                 $dayOfWeek = date("w", strtotime($Event_Date));
                 echo($dayOfWeek)."<br>";
-                array_push($arr_events[($dayOfWeek - 1)], $row["Event_ID"]);
+                array_push($arr_events[($dayOfWeek - 1)], $arr_result);
             }
         }
     }
     print_r($arr_events);
     echo '<br/>';
-
-    
-
-    
-   
-
-
-
+    foreach($arr_events[2] as &$value) {
+        asort($value, SORT_TIME);
+    }
 ?>
+
+<table>
+    <tr>
+        <th>Mon</th>
+            <?php foreach ($arr_events[0] as $Event) :?>
+                    <td><?php echo($Event["Event_Name"]); ?></td>
+                    <td><?php echo($Event["Event_Time"]); ?></td>
+            <?php endforeach;?>
+    </tr>
+    <tr>
+        <th>Tue</th>
+        <?php foreach ($arr_events[1] as $Event) :?>
+                    <td><?php echo($Event["Event_Name"]); ?></td>
+                    <td><?php echo($Event["Event_Time"]); ?></td>
+            <?php endforeach;?>
+    </tr>
+    <tr>
+        <th>Wed</th>
+        <?php foreach ($arr_events[2] as $Event) :?>
+                    <td><?php echo($Event["Event_Name"]); ?></td>
+                    <td><?php echo($Event["Event_Time"]); ?></td>
+            <?php endforeach;?>
+    </tr>
+    <tr>
+        <th>Thu</th>
+        <?php foreach ($arr_events[3] as $Event) :?>
+                    <td><?php echo($Event["Event_Name"]); ?></td>
+                    <td><?php echo($Event["Event_Time"]); ?></td>
+            <?php endforeach;?>
+    </tr>
+    <tr>
+        <th>Fri</th>
+        <?php foreach ($arr_events[4] as $Event) :?>
+                    <td><?php echo($Event["Event_Name"]); ?></td>
+                    <td><?php echo($Event["Event_Time"]); ?></td>
+            <?php endforeach;?>
+    </tr>
+</table>
+
+
 </body>
 </html>
