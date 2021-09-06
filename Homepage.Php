@@ -54,38 +54,23 @@
             }
         }
     }
-    //print_r($arr_events);
+    print_r($arr_events);
     echo '<br/>';
 
-    /* //Sorts Each days events by time
-    function insertion_sort(&$arr){
-        for($i=0;$i<count($arr);$i++){
-           $val = $arr[$i];
-           $j = $i-1;
-           while($j>=0 && $arr[$j] > $val){
-              $arr[$j+1] = $arr[$j];
-              $j--;
-           }
-           $arr[$j+1] = $val;
-        }
-     } */
-
-    for ($Day = 0; $Day <= (sizeof($arr_events) - 1); $Day++){ //each day
-        $sorted_day = array();
-        //print_r($arr_events[0][0]["Event_Time"]);
-        array_push($sorted_day,array_pop($arr_events[$Day]));
-        print_r($sorted_day);
-        for ($Event = 0; $Event <= (sizeof($arr_events[$Day]) - 1); $Event++){
-            $pos = 0;
-            for ($i = 0; $i <= (sizeof($sorted_day)); $i++){
-                if ($arr_events[$Day][$Event] >= $sorted_arr[$i]){
-                    $pos = $i+1
-                }///google
+     //Sorts Each days events by time
+    for ($Day = 0; $Day <= (sizeof($arr_events) - 1); $Day++){ 
+        for($i=0;$i<count($arr_events[$Day]);$i++){
+            $val = $arr_events[$Day][$i];
+            $j = $i-1;
+            while($j>=0 && $arr_events[$Day][$j]["Event_Time"] > $val["Event_Time"]){
+               $arr_events[$Day][$j+1] = $arr_events[$Day][$j];
+               $j--;
             }
-
-        }
-        echo '<br/>';
+            $arr_events[$Day][$j+1] = $val;
+         }
     }
+        
+    
 ?>
 
 <table>
