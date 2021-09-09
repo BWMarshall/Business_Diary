@@ -3,7 +3,53 @@
 <html>
 <head>
     <title>Homepage</title>
+    <style>
+        /* Popup container  */
+        .popup {
+            position: relative;
+            display: inline-block;
+            cursor: pointer;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        /* Popup text */
+        .popup .popuptext {
+            visibility: hidden;
+            width: 160px;
+            background-color: #555;
+            color: #fff;
+            text-align: center;
+            border-radius: 6px;
+            padding: 8px 0;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%;
+            left: 50%;
+            margin-left: -80px;
+        }
+
+        /* Popup arrow */
+        .popup .popuptext::after {
+            content: "";
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            margin-left: -5px;
+            border-width: 5px;
+            border-style: solid;
+            border-color: #555 transparent transparent transparent;
+        }
+
+        /* Toggle this class - hide and show the popup */
+        .popup .show {
+            visibility: visible;
+        }
+    </style>
 </head>
+
 
 <body>    
 <?php //Displays Diary
@@ -73,43 +119,52 @@
     
 ?>
 
+
 <table>
     <tr>
         <th>Mon</th>
             <?php foreach ($arr_events[0] as $Event) :?>
-                    <td><?php echo($Event["Event_Name"]); ?></td>
-                    <td><?php echo($Event["Event_Time"]); ?></td>
+                <td>
+                    <div class="popup" onclick="myFunction(<?php echo($Event['Event_ID']) ?>)"><?php echo($Event['Event_Name']. "<br>". $Event["Event_Time"]); ?>
+                        <span class="popuptext" id="<?php echo($Event['Event_ID']) ?>"><?php echo($Event["Event_Name"]. "<br>". $Event["Event_Time"]); ?></span>
+                    </div>    
+                </td>
             <?php endforeach;?>
     </tr>
     <tr>
         <th>Tue</th>
-        <?php foreach ($arr_events[1] as $Event) :?>
-                    <td><?php echo($Event["Event_Name"]); ?></td>
-                    <td><?php echo($Event["Event_Time"]); ?></td>
+            <?php foreach ($arr_events[1] as $Event) :?>
+                <td><?php echo($Event["Event_Name"]. "<br>". $Event["Event_Time"]); ?></td>
             <?php endforeach;?>
     </tr>
     <tr>
         <th>Wed</th>
         <?php foreach ($arr_events[2] as $Event) :?>
-                    <td><?php echo($Event["Event_Name"]); ?></td>
-                    <td><?php echo($Event["Event_Time"]); ?></td>
+                    <<td><?php echo($Event["Event_Name"]. "<br>". $Event["Event_Time"]); ?></td>
             <?php endforeach;?>
     </tr>
     <tr>
         <th>Thu</th>
         <?php foreach ($arr_events[3] as $Event) :?>
-                    <td><?php echo($Event["Event_Name"]); ?></td>
-                    <td><?php echo($Event["Event_Time"]); ?></td>
+                <td><?php echo($Event["Event_Name"]. "<br>". $Event["Event_Time"]); ?></td>
             <?php endforeach;?>
     </tr>
     <tr>
         <th>Fri</th>
         <?php foreach ($arr_events[4] as $Event) :?>
-                    <td><?php echo($Event["Event_Name"]); ?></td>
-                    <td><?php echo($Event["Event_Time"]); ?></td>
+                    <<td><?php echo($Event["Event_Name"]. "<br>". $Event["Event_Time"]); ?></td>
             <?php endforeach;?>
     </tr>
 </table>
+
+<script>
+// When the user clicks on div, open the popup
+function myFunction(Event_ID) {
+    //alert(Event_ID);
+  var popup = document.getElementById(Event_ID);
+  popup.classList.toggle("show");
+}
+</script>
 
 
 </body>
