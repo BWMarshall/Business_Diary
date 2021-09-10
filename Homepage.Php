@@ -68,19 +68,19 @@
     $current_date = "2021-09-10"; //date("Y/m/d");
     $current_time = date("h:ia");
     $current_day = 4;//date('w');
-    echo($current_date )."<br>";
-    echo($current_time)."<br>";
-    echo($current_day)."<br>";
-    print_r($_SESSION);
-    echo '<br/><br/>';
+    //echo($current_date )."<br>";
+    //echo($current_time)."<br>";
+    //echo($current_day)."<br>";
+    //print_r($_SESSION);
+    //echo '<br/><br/>';
 
     //Calculates which dates are in current week------------------------------
     $week = date("W", strtotime($current_date)); // get week   
     $y =    date("Y", strtotime($current_date)); // get year
     $week_start =  date('d-m-Y',strtotime($y."W".$week)); 
     $week_finish = date("d-m-Y",strtotime("+4 day", strtotime($week_start)));
-    echo($week_start)."<br>";
-    echo($week_finish)."<br><br>";
+    //echo($week_start)."<br>";
+    //echo($week_finish)."<br><br>";
 
     //Queries DB for all events session user is a participant then adds dates in current week to events array.--------------
     $sqlA = "SELECT Event_ID FROM tbl_usersinevents WHERE User_ID ='".$_SESSION["ID"]."'";
@@ -92,16 +92,16 @@
             $arr_result = $query->fetch(PDO::FETCH_ASSOC);
             $Event_Date = ($arr_result["Event_Date"]);
             $Event_Timestamp = strtotime($Event_Date);
-            echo($Event_Date)."<br>";
+            //echo($Event_Date)."<br>";
             if ($Event_Timestamp >= strtotime($week_start) and $Event_Date <= strtotime($week_finish)) { //Places Events in Current week into arr_events
                 $dayOfWeek = date("w", strtotime($Event_Date));
-                echo($dayOfWeek)."<br>";
+                //echo($dayOfWeek)."<br>";
                 array_push($arr_events[($dayOfWeek - 1)], $arr_result);
             }
         }
     }
-    print_r($arr_events);
-    echo '<br/>';
+    //print_r($arr_events);
+    //echo '<br/>';
 
      //Sorts Each days events by time
     for ($Day = 0; $Day <= (sizeof($arr_events) - 1); $Day++){ 
@@ -120,7 +120,7 @@
 ?>
 <?php //Preparing to display the diary
     $arr_daynames = ["Mon","Tues","Wed","Thu","Fri"];
-    print_r($arr_daynames);
+    //print_r($arr_daynames);
 ?>
 
 <table> <!-- Displays the Diary -->
