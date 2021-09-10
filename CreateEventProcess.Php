@@ -10,6 +10,10 @@
     echo($_POST["EventTime"])."<br>";
     print_r($_POST['Users'])."<br>";
 
+    if ($_POST["EventType"] == 0){
+        $_POST["EventLocation"] = "Deadline";
+
+    }
     //Write event to events table
     $stmt = $conn->prepare("INSERT INTO tbl_Events 
     (Event_ID, Event_Name,Event_Type, Event_Description, Event_Date, Event_Time, Event_Location) VALUES

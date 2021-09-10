@@ -1,4 +1,4 @@
-<!-- Homepage for website - displays diary and provides navigation around site - main landind page-->
+<!-- Homepage for website - displays diary and provides navigation around site - main landing page-->
 <!DOCTYPE html>
 <html>
 <head>
@@ -52,7 +52,7 @@
 
 
 <body>    
-<?php //Displays Diary
+<?php //Loads and sorts all event of current user into arr_events
     // Connects to DB and starts session---------------
     session_start();
     include_once("Connection.php");
@@ -65,9 +65,9 @@
     
     //Gets Current Date and Time------------------------
     date_default_timezone_set("Europe/London");
-    $current_date = "2021-07-27"; //date("Y/m/d");
+    $current_date = "2021-09-10"; //date("Y/m/d");
     $current_time = date("h:ia");
-    $current_day = 2;//date('w');
+    $current_day = 4;//date('w');
     echo($current_date )."<br>";
     echo($current_time)."<br>";
     echo($current_day)."<br>";
@@ -118,52 +118,33 @@
         
     
 ?>
+<?php //Preparing to display the diary
+    $arr_daynames = ["Mon","Tues","Wed","Thu","Fri"];
+    print_r($arr_daynames);
+?>
 
-
-<table>
-    <tr>
-        <th>Mon</th>
-            <?php foreach ($arr_events[0] as $Event) :?>
-                <td>
-                    <div class="popup" onclick="myFunction(<?php echo($Event['Event_ID']) ?>)"><?php echo($Event['Event_Name']. "<br>". $Event["Event_Time"]); ?>
-                        <span class="popuptext" id="<?php echo($Event['Event_ID']) ?>"><?php echo($Event["Event_Name"]. "<br>". $Event["Event_Time"]); ?></span>
-                    </div>    
-                </td>
-            <?php endforeach;?>
-    </tr>
-    <tr>
-        <th>Tue</th>
-            <?php foreach ($arr_events[1] as $Event) :?>
-                <td><?php echo($Event["Event_Name"]. "<br>". $Event["Event_Time"]); ?></td>
-            <?php endforeach;?>
-    </tr>
-    <tr>
-        <th>Wed</th>
-        <?php foreach ($arr_events[2] as $Event) :?>
-                    <<td><?php echo($Event["Event_Name"]. "<br>". $Event["Event_Time"]); ?></td>
-            <?php endforeach;?>
-    </tr>
-    <tr>
-        <th>Thu</th>
-        <?php foreach ($arr_events[3] as $Event) :?>
-                <td><?php echo($Event["Event_Name"]. "<br>". $Event["Event_Time"]); ?></td>
-            <?php endforeach;?>
-    </tr>
-    <tr>
-        <th>Fri</th>
-        <?php foreach ($arr_events[4] as $Event) :?>
-                    <<td><?php echo($Event["Event_Name"]. "<br>". $Event["Event_Time"]); ?></td>
-            <?php endforeach;?>
-    </tr>
+<table> <!-- Displays the Diary -->
+    <?php for ($i = 0; $i <= 4; $i++): ?> 
+        <tr>
+            <th><?php echo($arr_daynames[$i]) ?></th>
+                <?php foreach ($arr_events[$i] as $Event) :?>
+                    <td>
+                        <div class="popup" onclick="myFunction(<?php echo($Event['Event_ID']) ?>)"><?php echo($Event['Event_Name']. "<br>". $Event["Event_Time"]); ?>
+                            <span class="popuptext" id="<?php echo($Event['Event_ID']) ?>"><?php echo($Event["Event_Name"]. "<br>". $Event["Event_Time"]. "<br>". $Event["Event_Location"]. "<br>". $Event["Event_Description"]); ?></span>
+                        </div>    
+                    </td>
+                <?php endforeach;?>
+        </tr>
+    <?php endfor;?>
 </table>
 
-<script>
-// When the user clicks on div, open the popup
-function myFunction(Event_ID) {
-    //alert(Event_ID);
-  var popup = document.getElementById(Event_ID);
-  popup.classList.toggle("show");
-}
+<script> //Toggles Pop-up Visability
+    // When the user clicks on div, open the popup
+    function myFunction(Event_ID) {
+        //alert(Event_ID);
+    var popup = document.getElementById(Event_ID);
+    popup.classList.toggle("show");
+    }
 </script>
 
 
