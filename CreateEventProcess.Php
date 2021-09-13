@@ -41,7 +41,8 @@
     echo($User ."Added to ". $id ."<br>");
     } 
     
-    // Needs a header when implemented Properly
+    // Header back to homepage
+    header("location:Homepage.php");
 ?>
 
 

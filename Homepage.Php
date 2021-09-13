@@ -133,16 +133,80 @@
 <nav class="navbar navbar-inverse fixed-top">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" href="#">Inlook</a>
+      <a class="navbar-brand" >Inlook</a>
     </div>
     <ul class="nav navbar-nav">
       <li class="active"><a href="http://localhost/Coursework/BusinessDiarySystem/Homepage.php#">Home</a></li>
-      <li><a href="#">Create Event</a></li>
+      <li><a href="myModal" data-toggle="modal" data-target="#myModal">New Event</a></li>
       <li><a href="#">Email Preferences</a></li>
       <li><a href="#">Admin</a></li>
+      <li><a href="#">Log Out</a></li>
     </ul>
   </div>
 </nav>
+
+<!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Create Event</h4>
+        </div>
+        <div class="modal-body">
+            <script type="text/javascript">
+                // Script to hide/show ShowIfchecked div based on Radio ShowCheck
+                function ShowHideCheck() {
+                    if (document.getElementById('ShowCheck').checked) {
+                        document.getElementById('ShowIfChecked').style.visibility = 'visible';
+                    }
+                    else document.getElementById('ShowIfChecked').style.visibility = 'hidden';
+                }
+            </script>
+
+            <!-- Form to collect Create User data - Posts it through to Create Event Process -->
+            <form action="CreateEventProcess.php" method = "POST"> 
+                <!-- Text Inputs for Name and Desc -->
+                <input type="text" name="EventName" placeholder="Event name"><br>
+                <textarea name="EventDesc" rows="4" cols="20" style="resize:none" placeholder="Brief Description"></textarea><br>
+                
+                <!-- Radio w/ ShowCheck and HideCheck -->
+                Type:
+                <input type="radio" name="EventType" value=0 checked onclick="javascript:ShowHideCheck();" id="HideCheck"> Deadline 
+                <input type="radio" name="EventType" value=1 onclick="javascript:ShowHideCheck();" id="ShowCheck"> Meeting<br> 
+                <!-- Div hidden/Shown based on ShowHideCheck -->
+                <div id="ShowIfChecked" style="visibility:hidden">
+                    Location:<input type="text" name="EventLocation" placeholder="Meeting Link?">
+                </div>
+                
+                <!-- Time and Date inputs -->
+                Date:<input type="date" name="EventDate"><br>
+                Time:<input type="time" name="EventTime"><br>
+                
+                <!-- Input for Users in events -->
+                <select multiple name="Users[]">
+                    <?php
+                        include_once('Connection.php');
+                        $stmt = $conn->prepare("SELECT * FROM Tbl_Users ORDER BY User_Fullname ASC");
+                        $stmt->execute();
+
+                        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                            echo('<option value='.$row["User_ID"].'>'.$row["User_Fullname"].'</option>');
+                        }
+                    ?>
+                </select>
+            
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <input class="btn btn-info" type="submit" value="Create">
+        </div>
+    </div>
+  </div>
+</div>
+
 
 
 <?php //Preparing to display the diary
@@ -157,7 +221,7 @@
                 <?php foreach ($arr_events[$i] as $Event) :?>
                     <td>
                         <div class="popup" onclick="myFunction(<?php echo($Event['Event_ID']) ?>)"><?php echo($Event['Event_Name']. "<br>". $Event["Event_Time"]); ?>
-                            <span class="popuptext" id="<?php echo($Event['Event_ID']) ?>"><?php echo($Event["Event_Name"]. "<br>". $Event["Event_Time"]. "<br>". $Event["Event_Location"]. "<br>". $Event["Event_Description"]); ?></span>
+                            <span class="popuptext" id="<?php echo($Event['Event_ID']) ?>"><?php echo($Event["Event_Name"]. "<br>". $Event["Event_Date"]. " " . $Event["Event_Time"]. "<br>". $Event["Event_Location"]. "<br>". $Event["Event_Description"]); ?></span>
                         </div>    
                     </td>
                 <?php endforeach;?>
