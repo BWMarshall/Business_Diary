@@ -3,6 +3,7 @@
 <html>
 <head>
     <title>Homepage</title>
+    <!-- Links Bootstrap 3 -->
     <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -10,10 +11,6 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     
     <style>
-        
-        
-        
-        
         /* Popup container  */
         .popup {
             position: relative;
@@ -76,9 +73,9 @@
     
     //Gets Current Date and Time------------------------
     date_default_timezone_set("Europe/London");
-    $current_date = "2021-09-10"; //date("Y/m/d");
-    $current_time = date("h:ia");
-    $current_day = 4;//date('w');
+    $current_date = "2021-09-06";//date("Y/m/d");
+    $current_time =  date("h:ia");
+    $current_day =    "m";//date('w');
     //echo($current_date )."<br>";
     //echo($current_time)."<br>";
     //echo($current_day)."<br>";
@@ -126,10 +123,9 @@
             $arr_events[$Day][$j+1] = $val;
          }
     }
-        
-    
 ?>
 
+<!-- Navbar -->
 <nav class="navbar navbar-inverse fixed-top">
   <div class="container-fluid">
     <div class="navbar-header">
@@ -137,7 +133,7 @@
     </div>
     <ul class="nav navbar-nav">
       <li class="active"><a href="http://localhost/Coursework/BusinessDiarySystem/Homepage.php#">Home</a></li>
-      <li><a href="myModal" data-toggle="modal" data-target="#myModal">New Event</a></li>
+      <li><a href="CreateNewEventModal" data-toggle="modal" data-target="#CreateNewEventModal">New Event</a></li>
       <li><a href="#">Email Preferences</a></li>
       <li><a href="#">Admin</a></li>
       <li><a href="#">Log Out</a></li>
@@ -145,8 +141,8 @@
   </div>
 </nav>
 
-<!-- Modal -->
-<div id="myModal" class="modal fade" role="dialog">
+<!-- Create Event Modal -->
+<div id="CreateNewEventModal" class="modal fade" role="dialog">
   <div class="modal-dialog">
 
     <!-- Modal content-->
@@ -214,20 +210,28 @@
     //print_r($arr_daynames);
 ?>
 
-<table> <!-- Displays the Diary -->
-    <?php for ($i = 0; $i <= 4; $i++): ?> 
-        <tr>
-            <th><?php echo($arr_daynames[$i]) ?></th>
-                <?php foreach ($arr_events[$i] as $Event) :?>
-                    <td>
-                        <div class="popup" onclick="myFunction(<?php echo($Event['Event_ID']) ?>)"><?php echo($Event['Event_Name']. "<br>". $Event["Event_Time"]); ?>
-                            <span class="popuptext" id="<?php echo($Event['Event_ID']) ?>"><?php echo($Event["Event_Name"]. "<br>". $Event["Event_Date"]. " " . $Event["Event_Time"]. "<br>". $Event["Event_Location"]. "<br>". $Event["Event_Description"]); ?></span>
-                        </div>    
-                    </td>
-                <?php endforeach;?>
-        </tr>
-    <?php endfor;?>
-</table>
+<div class="container-fluid">
+    <table class="table table-bordered table-striped"> <!-- Displays the Diary -->
+        <?php for ($i = 0; $i <= 4; $i++): ?> 
+            <tr>
+                <th><?php echo($arr_daynames[$i]) ?></th>
+                    <?php foreach ($arr_events[$i] as $Event) :?>
+                        <td>
+                            <div class="popup" onclick="myFunction(<?php echo($Event['Event_ID']) ?>)"><?php echo($Event['Event_Name']. "<br>". $Event["Event_Time"]); ?>
+                                <span class="popuptext" id="<?php echo($Event['Event_ID']) ?>"> <!-- Pop-up Content -->
+                                    <?php echo($Event["Event_Name"]. "<br>". $Event["Event_Date"]. " " . $Event["Event_Time"]. "<br>". $Event["Event_Location"]. "<br>". $Event["Event_Description"]. "<br>"); ?>
+                                    <form action = "EditEvent.php" method = "POST"> 
+                                        <input name="Event_ID" type="hidden" value = <?php echo($Event["Event_ID"]) ?> >    
+                                        <button type="submit" class="btn btn-primary btn-xs">Edit</button>
+                                    </form>
+                                </span>
+                            </div>    
+                        </td>
+                    <?php endforeach;?>
+            </tr>
+        <?php endfor;?>
+    </table>
+</div>
 
 <script> //Toggles Pop-up Visability
     // When the user clicks on div, open the popup
