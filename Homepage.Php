@@ -141,7 +141,7 @@
   </div>
 </nav>
 
-<!-- Admin Select Modal -->
+<!-- Admin Menu Modal -->
 <div id="AdminSelectModal" class="modal fade" role="dialog">
   <div class="modal-dialog">
 
@@ -149,10 +149,10 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Admin Select</h4>
+        <h4 class="modal-title">Admin Menu</h4>
       </div>
       <div class="modal-body">
-        <h5> Select diary to view</h5>
+        <h4> Select diary to view</h4>
         <form action="AdminView.php" method = "POST">
             <select name="User">
                 <?php
@@ -165,10 +165,33 @@
                     }
                 ?>
             </select>
+            <input class="btn btn-info" type="submit" value="View">
+            </form>
+        <h4> Create User </h4>
+            <!-- Form to collect Create User data - Posts it through to Create User Process -->
+            <form action="CreateUserProcess.php" method = "POST"> 
+                <!-- Text Inputs -->
+                <input type="text" name="Loginname" placeholder="Username"><br>
+                <input type="password" name="Password" placeholder="Password"><br>  
+                <input type="text" name="Fullname" placeholder="Fullname"><br> 
+                <input type="text" name="EmailAddress" placeholder="Email Address"><br>  
+                <!--Time Inputs -->
+                Email Time:<input type="time" name="EmailTime"><br>
+                <!--Email Toggle -->
+                Recieve Emails:
+                <input type="radio" name="EmailToggle" value=1 checked> Yes
+                <input type="radio" name="EmailToggle" value=0 > No <br>
+                <!--Role Radio -->
+                Role:
+                <input type="radio" name="Role" value=0 checked> Employee 
+                <input type="radio" name="Role" value=1> Admin<br> 
+                <!-- Submit -->
+                <input class="btn btn-info" type="submit" value="Create User">  
+            </form>  
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <input class="btn btn-info" type="submit" value="View">
+        
       </div>
     </div>
 

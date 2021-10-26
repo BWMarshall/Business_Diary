@@ -31,6 +31,8 @@ $stmt = $conn->prepare("INSERT INTO tbl_users
  $stmt->bindParam(':Role', $_POST["Role"]);
  $stmt->execute();
  $stmt->closeCursor();
- echo(" <br> User Created Successfully")
- // Needs a header when implemented Properly
+ echo(" <br> User Created Successfully");
+
+ // Header back to homepage
+ header("location:Homepage.php");
 ?>
