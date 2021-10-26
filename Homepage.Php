@@ -135,11 +135,46 @@
       <li class="active"><a href="http://localhost/Coursework/BusinessDiarySystem/Homepage.php#">Home</a></li>
       <li><a href="CreateNewEventModal" data-toggle="modal" data-target="#CreateNewEventModal">New Event</a></li>
       <li><a href="#">Email Preferences</a></li>
-      <li><a href="#">Admin</a></li>
       <li><a href="#">Log Out</a></li>
+      <li><a href="AdminSelectModal" data-toggle="modal" data-target="#AdminSelectModal"><?php if($_SESSION["Role"]==1)echo("Admin");?></a></li>
     </ul>
   </div>
 </nav>
+
+<!-- Admin Select Modal -->
+<div id="AdminSelectModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Admin Select</h4>
+      </div>
+      <div class="modal-body">
+        <h5> Select diary to view</h5>
+        <form action="AdminView.php" method = "POST">
+            <select name="User">
+                <?php
+                    include_once('Connection.php');
+                    $stmt = $conn->prepare("SELECT * FROM Tbl_Users ORDER BY User_Fullname ASC");
+                    $stmt->execute();
+
+                    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                        echo('<option value='.$row["User_ID"].'>'.$row["User_Fullname"].'</option>');
+                    }
+                ?>
+            </select>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <input class="btn btn-info" type="submit" value="View">
+      </div>
+    </div>
+
+  </div>
+</div>
+
 
 <!-- Create Event Modal -->
 <div id="CreateNewEventModal" class="modal fade" role="dialog">
