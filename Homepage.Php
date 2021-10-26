@@ -217,13 +217,14 @@
                 <th><?php echo($arr_daynames[$i]) ?></th>
                     <?php foreach ($arr_events[$i] as $Event) :?>
                         <td>
-                            <div class="popup" onclick="myFunction(<?php echo($Event['Event_ID']) ?>)"><?php echo($Event['Event_Name']. "<br>". $Event["Event_Time"]); ?>
-                                <span class="popuptext" id="<?php echo($Event['Event_ID']) ?>"> <!-- Pop-up Content -->
+                            <div class="popup" onclick="togglepopup(<?php echo($Event['Event_ID']) ?>)"><?php echo($Event['Event_Name']. "<br>". $Event["Event_Time"]); ?>
+                                <span class="popuptext " id="<?php echo($Event['Event_ID']) ?>"> <!-- Pop-up Content -->
                                     <?php echo($Event["Event_Name"]. "<br>". $Event["Event_Date"]. " " . $Event["Event_Time"]. "<br>". $Event["Event_Location"]. "<br>". $Event["Event_Description"]. "<br>"); ?>
-                                    <form action = "EditEvent.php" method = "POST"> 
-                                        <input name="Event_ID" type="hidden" value = <?php echo($Event["Event_ID"]) ?> >    
-                                        <button type="submit" class="btn btn-primary btn-xs">Edit</button>
+                                    <form action = "EditEvent.php" method = "POST">
+                                        <input name="Event_ID" type="hidden" value = <?php echo($Event["Event_ID"]);?> >
+                                        <button type="submit" class="btn btn-primary btn-cs">Edit</button>
                                     </form>
+                                    
                                 </span>
                             </div>    
                         </td>
@@ -235,10 +236,9 @@
 
 <script> //Toggles Pop-up Visability
     // When the user clicks on div, open the popup
-    function myFunction(Event_ID) {
-        //alert(Event_ID);
+    function togglepopup(Event_ID) {
     var popup = document.getElementById(Event_ID);
-    popup.classList.toggle("show");
+        popup.classList.toggle("show");
     }
 </script>
 

@@ -24,7 +24,7 @@ $stmt = $conn->prepare("DROP TABLE IF EXISTS Tbl_Events;
 CREATE TABLE Tbl_Events
 (Event_ID INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
 Event_Type TINYINT(1) NOT NULL,
-Event_Name VARCHAR(20) NOT NULL,
+Event_Name VARCHAR(200) NOT NULL,
 Event_Location VARCHAR(100),
 Event_Time TIME(0) NOT NULL,
 Event_Date DATE NOT NULL,
