@@ -1,4 +1,8 @@
 <?Php
+session_start();
+if ($_SESSION["ID"] == NULL){
+    header('Location: Login.php');
+}
 //Create User Process - Runs SQL code to create a new users from posted values
 include_once("Connection.php");
 

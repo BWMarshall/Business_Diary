@@ -59,6 +59,12 @@
 <?php //Loads and sorts all event of current user into arr_events
     // Connects to DB and starts session---------------
     session_start();
+    if ($_SESSION["ID"] == NULL){
+        header('Location: Login.php');
+    } else if ($_SESSION["Role"] == 0){
+        header('Location: Homepage.php');
+    }
+
     include_once("Connection.php");
     
     //Creates arr_events -> 2d array (0-4 = mon-fri)

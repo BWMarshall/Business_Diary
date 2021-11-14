@@ -61,9 +61,12 @@
 <body>    
 
 <?php //Loads and sorts all event of current user into arr_events
+    
     //Starts session and validates User---------------
     session_start();
-    if $_SESSION
+    if ($_SESSION["ID"] == NULL){
+        header('Location: Login.php');
+    }
 
 
     //connects to db

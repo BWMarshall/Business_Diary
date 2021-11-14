@@ -26,6 +26,9 @@
 
     <?php
         session_start();
+        if ($_SESSION["ID"] == NULL){
+            header('Location: Login.php');
+        }
         include_once("Connection.php");
         //echo($_POST['Event_ID'])."<br>";
 

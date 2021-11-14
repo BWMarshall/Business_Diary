@@ -1,4 +1,8 @@
 <?php // Create User Process - creates the event from posted inputs and adds participants
+    session_start();
+    if ($_SESSION["ID"] == NULL){
+        header('Location: Login.php');
+    }
     include_once("Connection.php");
 
     // Debug Checks
