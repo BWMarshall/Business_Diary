@@ -61,9 +61,15 @@
 <body>    
 
 <?php //Loads and sorts all event of current user into arr_events
-    // Connects to DB and starts session---------------
+    //Starts session and validates User---------------
     session_start();
+    if $_SESSION
+
+
+    //connects to db
     include_once("Connection.php");
+
+
     
     //Creates arr_events -> 2d array (0-4 = mon-fri)
     $arr_events = array(
