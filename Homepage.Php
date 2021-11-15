@@ -143,12 +143,43 @@
     <ul class="nav navbar-nav">
       <li class="active"><a href="http://localhost/Coursework/BusinessDiarySystem/Homepage.php#">Home</a></li>
       <li><a href="CreateNewEventModal" data-toggle="modal" data-target="#CreateNewEventModal">New Event</a></li>
-      <li><a href="#">Email Preferences</a></li>
+      <li><a href="EmailPreferencesModal" data-toggle="modal" data-target="#EmailPreferencesModal">Email Preferences</a></li>
       <li><a href="logoutProcess.php">Log Out</a></li>
       <li><a href="AdminSelectModal" data-toggle="modal" data-target="#AdminSelectModal"><?php if($_SESSION["Role"]==1)echo("Admin");?></a></li>
     </ul>
   </div>
 </nav>
+
+<!--Email Preferences Modal -->
+<div id="EmailPreferencesModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Email Preferences</h4>
+      </div>
+      <div class="modal-body">
+        <form action="EmailPreferences.php" method = "POST"> 
+                <!-- Radio w/ ShowCheck and HideCheck -->
+                Do you want to recieve daily email update?:
+                <br>
+                <input type="radio" name="EmailToggle" value=0 checked>No 
+                <input type="radio" name="EmailToggle" value=1 > Yes <br> 
+                <!-- Time and Date inputs -->
+            
+                Time of email updates:<input type="time" name="EmailTime"><br>    
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <input class="btn btn-info" type="submit" value="Update">
+      </div>
+    </div>
+
+  </div>
+</div>
+
 
 <!-- Admin Menu Modal -->
 <div id="AdminSelectModal" class="modal fade" role="dialog">
