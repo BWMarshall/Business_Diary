@@ -144,7 +144,7 @@
       <li class="active"><a href="http://localhost/Coursework/BusinessDiarySystem/Homepage.php#">Home</a></li>
       <li><a href="CreateNewEventModal" data-toggle="modal" data-target="#CreateNewEventModal">New Event</a></li>
       <li><a href="#">Email Preferences</a></li>
-      <li><a href="#">Log Out</a></li>
+      <li><a href="logoutProcess.php">Log Out</a></li>
       <li><a href="AdminSelectModal" data-toggle="modal" data-target="#AdminSelectModal"><?php if($_SESSION["Role"]==1)echo("Admin");?></a></li>
     </ul>
   </div>
