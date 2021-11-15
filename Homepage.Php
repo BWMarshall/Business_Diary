@@ -174,6 +174,7 @@
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
         <input class="btn btn-info" type="submit" value="Update">
+        </form>
       </div>
     </div>
 
@@ -296,6 +297,7 @@
         <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
             <input class="btn btn-info" type="submit" value="Create">
+            </form>
         </div>
     </div>
   </div>

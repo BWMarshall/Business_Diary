@@ -136,7 +136,7 @@
         <ul class="nav navbar-nav">
         <li><a href="http://localhost/Coursework/BusinessDiarySystem/Homepage.php#">Home</a></li>
         <li class="active"><a href="AdminSelectModal" data-toggle="modal" data-target="#AdminSelectModal"><?php if($_SESSION["Role"]==1)echo("Admin");?></a></li>
-        <li><a href="#">Log Out</a></li>
+        <li><a href="LogoutProcess.Php">Log Out</a></li>
         </ul>
     </div>
     </nav>

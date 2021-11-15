@@ -19,7 +19,7 @@
         </div>
         <ul class="nav navbar-nav">
         <li class="active"><a href="http://localhost/Coursework/BusinessDiarySystem/Homepage.php#">Home</a></li>
-        <li><a href="#">Log Out</a></li>
+        <li><a href="LogoutProcess.Php">Log Out</a></li>
         </ul>
     </div>
     </nav>
@@ -66,7 +66,6 @@
                 <input name="EventID" type="hidden" value = <?php echo($_POST['Event_ID']);?> >
                 Name: <input type="text" name="EventName" value= "<?Php echo($arr_result["Event_Name"])?>"><br>
                 Description: <br> <textarea name="EventDesc" rows="4" cols="20" style="resize:none"><?Php echo($arr_result["Event_Description"])?></textarea><br>
-                
                 <!-- Radio w/ ShowCheck and HideCheck -->
                 Type:
                 <input type="radio" name="EventType" value=0 checked onclick="javascript:ShowHideCheck();" id="HideCheck"> Deadline 
@@ -75,11 +74,9 @@
                 <div id="ShowIfChecked" style="visibility:hidden">
                     Location:<input type="text" name="EventLocation" value="<?Php echo($arr_result["Event_Location"])?>">
                 </div>
-                
                 <!-- Time and Date inputs -->
                 Date:<input type="date" name="EventDate" value="<?Php echo($arr_result["Event_Date"])?>"><br>
                 Time:<input type="time" name="EventTime" value="<?Php echo($arr_result["Event_Time"])?>"><br>
-                
                 <!-- Input for Users in events -->
                 <?php
                     echo("<br>Current Participants: ");
@@ -100,6 +97,10 @@
                     ?>
                 </select>
                 <br>
+                Delete Event:
+                <input type="radio" name="EventDelete" value=0 checked> No
+                <input type="radio" name="EventDelete" value=1> Yes 
+                <br> 
                 <input class="btn btn-info" type="submit" value="Edit">   
         </form>
     </div>
