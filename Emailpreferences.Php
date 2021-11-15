@@ -1,5 +1,9 @@
 <?php //Updates the user's email preferences
-
+//Starts session and validates User---------------
+session_start();
+if ($_SESSION["ID"] == NULL){
+    header('Location: Login.php');
+}
 include_once("Connection.php");
 
 // Updates DB with posted values
@@ -16,8 +20,4 @@ header('Location: Homepage.php');
 ?>
 
 
-//Starts session and validates User---------------
-session_start();
-if ($_SESSION["ID"] == NULL){
-    header('Location: Login.php');
-}
+
