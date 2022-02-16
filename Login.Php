@@ -16,8 +16,9 @@
     <div class="container">
         <div class="jumbotron">
             <h2>Inlook</h2>
-            <!--Login Input and post -->
+            <!--Login Form - Posts to Login Process -->
             <form action = "LoginProcess.php" method = "POST">
+                <!--Username and Password Inputs -->
                 <div> 
                     <input  type="text" class="form-control" name="Username" placeholder="Username">
                 </div>

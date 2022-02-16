@@ -18,6 +18,3 @@ echo("Preferences Updated");
 header('Location: Homepage.php');
 
 ?>
-
-
-

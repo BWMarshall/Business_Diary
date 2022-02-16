@@ -19,7 +19,7 @@ if (!$row) {
     echo($row['User_Password'])."<br>";
     $hashed= $row['User_Password'];
     $attempt= $_POST['Password'];
-// Check Password
+// Check Password - Directs to Homepage if valid, Directs to Login if invalid
     if(password_verify($attempt,$hashed)){  
         $_SESSION['Role']=$row['User_Role'];
         $_SESSION['Username']=$_POST['Username'];

@@ -207,7 +207,7 @@
                 ?>
             </select>
             <input class="btn btn-info" type="submit" value="View">
-            </form>
+        </form>
         <h4> Create User </h4>
             <!-- Form to collect Create User data - Posts it through to Create User Process -->
             <form action="CreateUserProcess.php" method = "POST"> 

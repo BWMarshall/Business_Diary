@@ -61,9 +61,9 @@
     session_start();
     if ($_SESSION["ID"] == NULL){
         header('Location: Login.php');
-    } else if ($_SESSION["Role"] != 0){
-        header('Location: Homepage.php');
-    }
+    } //else if ($_SESSION["Role"] == 1){
+        //header('Location: Homepage.php');
+    //}
 
     include_once("Connection.php");
     

@@ -3,8 +3,8 @@ include_once("Connection.php");
 
 //Gets Current Date and Time--------------------------------
 date_default_timezone_set("Europe/London");
-$current_date = "2021-09-06";//date("Y/m/d");
-$current_time =  "16:30";//date("G:i");
+$current_date = date("Y/m/d");
+$current_time =  "18:30";//date("G:i");
 //echo($current_time)."<br>";
 $current_time = "".$current_time.":00";
 //echo($current_time)."<br>";
